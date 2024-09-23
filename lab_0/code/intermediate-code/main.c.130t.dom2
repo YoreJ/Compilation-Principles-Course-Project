@@ -1,0 +1,64 @@
+
+;; Function main (main, funcdef_no=23, decl_uid=3375, cgraph_uid=24, symbol_order=23) (executed once)
+
+;; 2 loops found
+;;
+;; Loop 0
+;;  header 0, latch 1
+;;  depth 0, outer -1
+;;  nodes: 0 1 2 5 3 6 4
+;;
+;; Loop 1
+;;  header 3, latch 6
+;;  depth 1, outer 0
+;;  nodes: 3 6
+;; 2 succs { 5 4 }
+;; 5 succs { 3 }
+;; 3 succs { 6 4 }
+;; 6 succs { 3 }
+;; 4 succs { 1 }
+Exported global range table:
+============================
+_1  : [irange] long long unsigned int [1, 2147483647] NONZERO 0x7fffffff
+i_10  : [irange] int [2, +INF] NONZERO 0x7fffffff
+i_16  : [irange] int [1, +INF] NONZERO 0x7fffffff
+Removing basic block 5
+Removing basic block 6
+int main ()
+{
+  int i;
+  long long unsigned int factorial;
+  int num;
+  long long unsigned int _1;
+  int num.0_2;
+  int num.0_13;
+
+  <bb 2> [local count: 118111600]:
+  scanf ("%d", &num);
+  num.0_13 = num;
+  if (num.0_13 > 0)
+    goto <bb 3>; [89.00%]
+  else
+    goto <bb 4>; [11.00%]
+
+  <bb 3> [local count: 955630225]:
+  # factorial_14 = PHI <factorial_9(3), 1(2)>
+  # i_16 = PHI <i_10(3), 1(2)>
+  _1 = (long long unsigned int) i_16;
+  factorial_9 = _1 * factorial_14;
+  i_10 = i_16 + 1;
+  num.0_2 = num.0_13;
+  if (i_10 <= num.0_13)
+    goto <bb 3>; [89.00%]
+  else
+    goto <bb 4>; [11.00%]
+
+  <bb 4> [local count: 118111600]:
+  # factorial_15 = PHI <factorial_9(3), 1(2)>
+  __printf_chk (2, "%llu\n", factorial_15);
+  num ={v} {CLOBBER(eol)};
+  return 0;
+
+}
+
+

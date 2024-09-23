@@ -1,0 +1,75 @@
+
+;; Function main (main, funcdef_no=23, decl_uid=3375, cgraph_uid=24, symbol_order=23) (executed once)
+
+;; 2 loops found
+;;
+;; Loop 0
+;;  header 0, latch 1
+;;  depth 0, outer -1
+;;  nodes: 0 1 2 3 4 5
+;;
+;; Loop 1
+;;  header 4, latch 3
+;;  depth 1, outer 0
+;;  nodes: 4 3
+;; 2 succs { 4 }
+;; 3 succs { 4 }
+;; 4 succs { 3 5 }
+;; 5 succs { 1 }
+
+SSA replacement table
+N_i -> { O_1 ... O_j } means that N_i replaces O_1, ..., O_j
+
+factorial_5 -> { factorial_3 }
+i_12 -> { i_4 }
+num.0_13 -> { num.0_2 }
+factorial_14 -> { factorial_3 }
+factorial_15 -> { factorial_3 }
+i_16 -> { i_4 }
+Incremental SSA update started at block: 6
+Number of blocks in CFG: 9
+Number of blocks to update: 6 ( 67%)
+
+
+Merging blocks 2 and 6
+Merging blocks 3 and 4
+Removing basic block 7
+Removing basic block 8
+int main ()
+{
+  int i;
+  long long unsigned int factorial;
+  int num;
+  long long unsigned int _1;
+  int num.0_2;
+  int num.0_13;
+
+  <bb 2> [local count: 118111600]:
+  scanf ("%d", &num);
+  num.0_13 = num;
+  if (num.0_13 > 0)
+    goto <bb 3>; [89.00%]
+  else
+    goto <bb 4>; [11.00%]
+
+  <bb 3> [local count: 955630225]:
+  # factorial_14 = PHI <factorial_9(3), 1(2)>
+  # i_16 = PHI <i_10(3), 1(2)>
+  _1 = (long long unsigned int) i_16;
+  factorial_9 = _1 * factorial_14;
+  i_10 = i_16 + 1;
+  num.0_2 = num;
+  if (num.0_2 >= i_10)
+    goto <bb 3>; [89.00%]
+  else
+    goto <bb 4>; [11.00%]
+
+  <bb 4> [local count: 118111600]:
+  # factorial_15 = PHI <factorial_9(3), 1(2)>
+  __printf_chk (2, "%llu\n", factorial_15);
+  num ={v} {CLOBBER(eol)};
+  return 0;
+
+}
+
+

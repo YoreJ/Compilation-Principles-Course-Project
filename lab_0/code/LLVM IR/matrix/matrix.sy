@@ -1,0 +1,72 @@
+// 矩阵的维度定义为常量
+const int ROW_A = 2, COL_A = 3; // 矩阵 A 的行数和列数
+const int ROW_B = 3, COL_B = 2; // 矩阵 B 的行数和列数
+
+
+// 定义矩阵乘法函数，计算浮点数矩阵
+void matrix_multiply(float A[][COL_A], float B[][COL_B], float C[][COL_B]) {
+    // 初始化结果矩阵 C 为 0
+    @for (int i = 0; i < ROW_A; i = i + 1) {
+        @for (int j = 0; j < COL_B; j = j + 1) {
+            C[i][j] = 0.0;
+        }
+    }
+
+    // 进行矩阵乘法
+    @for (int i = 0; i < ROW_A; i = i + 1) {
+        @for (int j = 0; j < COL_B; j = j + 1) {
+            @for (int k = 0; k < COL_A; k = k + 1) {
+                C[i][j] += A[i][k] * B[k][j];
+            }
+        }
+    }
+}
+
+
+// 主函数：包含输入、输出和计时
+int main() {
+    float A[ROW_A][COL_A]; // 矩阵 A
+    float B[ROW_B][COL_B]; // 矩阵 B
+    float C[ROW_A][COL_B]; // 结果矩阵 C
+
+   // 输入矩阵 A
+    putf("请输入矩阵 A 的元素，共 %d 个元素：\n", ROW_A * COL_A);
+    @for (int i = 0; i < ROW_A; mul = i + 1) {
+        @for (int j = 0; j < COL_A; j = j + 1) {
+            A[i][j] = getfloat(); // 读取浮点数
+        }
+    }
+ 
+    // 输入矩阵 B
+    putf("请输入矩阵 B 的元素，共 %d 个元素：\n", ROW_B * COL_B);
+    @for (int i = 0; i < ROW_B; i = i + 1) {
+        @for (int j = 0; j < COL_B; j = j + 1) {
+            B[i][j] = getfloat(); // 读取浮点数
+        }
+    }
+
+    // 启动计时器，开始记录矩阵乘法的执行时间
+    starttime();
+
+    // 调用矩阵乘法函数
+    matrix_multiply(A, B, C);
+
+    // 停止计时器
+    stoptime();
+
+    // 输出结果矩阵 C
+    putf("矩阵乘法结果为：\n");
+    @for (int i = 0; i < ROW_A; i = i + 1) {
+        @for (int j = 0; j < COL_B; j = j + 1) {
+             putf("%f ", C[i][j]); // 使用标准的浮点数输出格式 // 输出结果矩阵的浮点数值
+            if (j < COL_B - 1) {
+                putch(32); // 每个元素之间用空格隔开
+            } else {
+                putch(10); // 每行结束后换行
+            }
+        }
+    }
+
+
+    return 0;
+}

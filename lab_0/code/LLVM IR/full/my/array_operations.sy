@@ -1,0 +1,23 @@
+int main() {
+    int arr[5];  // 声明大小为 5 的数组
+    int i;
+    
+    // 使用 while 循环填充数组
+    i = 0;
+    while (i < 5) {
+        arr[i] = i + 1;  // 填充数组元素
+        i = i + 1;
+    }
+    
+    // 使用 while 循环输出数组元素
+    i = 0;
+    while (i < 5) {
+        putint(arr[i]);  // 输出数组元素
+        putch(32);  // 输出空格
+        i = i + 1;
+    }
+    
+    putch(10);  // 输出换行符
+    return 0;
+}
+

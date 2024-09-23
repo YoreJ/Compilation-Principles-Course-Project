@@ -1,0 +1,19 @@
+// 递归函数：计算 n 的阶乘
+int factorial(int n) {
+    if (n == 0) {
+        return 1;
+    }
+    return n * factorial(n - 1);
+}
+
+int main() {
+    int n, result;
+    n = getint();  // 获取用户输入
+    
+    result = factorial(n);  // 递归计算阶乘
+    
+    putint(result);  // 输出结果
+    putch(10);  // 输出换行符
+    
+    return 0;
+}

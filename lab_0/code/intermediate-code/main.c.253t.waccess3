@@ -1,0 +1,63 @@
+
+;; Function main (main, funcdef_no=23, decl_uid=3375, cgraph_uid=24, symbol_order=23) (executed once)
+
+pointer_query counters:
+  index cache size:   0
+  index entries:      0
+  access cache size:  0
+  access entries:     0
+  hits:               0
+  misses:             0
+  failures:           0
+  max_depth:          0
+int main ()
+{
+  long long unsigned int ivtmp.10;
+  int i;
+  long long unsigned int factorial;
+  int num;
+  unsigned int _1;
+  unsigned int _5;
+  int num.0_13;
+  long long unsigned int _18;
+
+  <bb 2> [local count: 118111600]:
+  scanf ("%d", &num);
+  num.0_13 = num;
+  if (num.0_13 > 0)
+    goto <bb 3>; [89.00%]
+  else
+    goto <bb 7>; [11.00%]
+
+  <bb 3> [local count: 105119324]:
+  _5 = (unsigned int) num.0_13;
+  _1 = _5 + 1;
+  _18 = (long long unsigned int) _1;
+
+  <bb 4> [local count: 955630225]:
+  # factorial_14 = PHI <factorial_9(6), 1(3)>
+  # ivtmp.10_4 = PHI <ivtmp.10_3(6), 1(3)>
+  factorial_9 = ivtmp.10_4 * factorial_14;
+  ivtmp.10_3 = ivtmp.10_4 + 1;
+  if (ivtmp.10_3 != _18)
+    goto <bb 6>; [89.00%]
+  else
+    goto <bb 8>; [11.00%]
+
+  <bb 8> [local count: 105119324]:
+  goto <bb 5>; [100.00%]
+
+  <bb 6> [local count: 850510901]:
+  goto <bb 4>; [100.00%]
+
+  <bb 7> [local count: 12992276]:
+
+  <bb 5> [local count: 118111600]:
+  # factorial_15 = PHI <factorial_9(8), 1(7)>
+  __printf_chk (2, "%llu\n", factorial_15);
+  num ={v} {CLOBBER(eol)};
+  return 0;
+
+}
+
+

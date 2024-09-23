@@ -1,0 +1,203 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build-llvm-fibonacci",
+            "type": "shell",
+            "command": "llc",
+            "args": [
+                "-march=riscv64",
+                "-mattr=+m,+a,+f,+d,+c",
+                "-filetype=obj",
+                "fibonacci.ll",
+                "-o",
+                "fibonacci.o"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/lab_0/code/LLVM IR/fibonacci"
+            },
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "build-llvm-full",
+            "type": "shell",
+            "command": "llc",
+            "args": [
+                "-march=riscv64",
+                "-mattr=+m,+a,+f,+d,+c",
+                "-filetype=obj",
+                "full.ll",
+                "-o",
+                "full.o"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/lab_0/code/LLVM IR/full"
+            },
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "build-llvm-matrix",
+            "type": "shell",
+            "command": "llc",
+            "args": [
+                "-march=riscv64",
+                "-mattr=+m,+a,+f,+d,+c",
+                "-filetype=obj",
+                "matrix.ll",
+                "-o",
+                "matrix.o"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/lab_0/code/LLVM IR/matrix"
+            },
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "build-gcc-fibonacci",
+            "type": "shell",
+            "command": "riscv64-unknown-elf-gcc",
+            "args": [
+                "-march=rv64imafdc",
+                "-mabi=lp64d",
+                "-o",
+                "fibonacci",
+                "fibonacci.o",
+                "support.c"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/lab_0/code/LLVM IR/fibonacci"
+            },
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "build-gcc-full",
+            "type": "shell",
+            "command": "riscv64-unknown-elf-gcc",
+            "args": [
+                "-march=rv64imafdc",
+                "-mabi=lp64d",
+                "-o",
+                "full",
+                "full.o",
+                "support.c"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/lab_0/code/LLVM IR/full"
+            },
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "build-gcc-matrix",
+            "type": "shell",
+            "command": "riscv64-unknown-elf-gcc",
+            "args": [
+                "-march=rv64imafdc",
+                "-mabi=lp64d",
+                "-o",
+                "matrix",
+                "matrix.o",
+                "support.c"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/lab_0/code/LLVM IR/matrix"
+            },
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "run-qemu-fibonacci",
+            "type": "shell",
+            "command": "qemu-riscv64",
+            "args": [
+                "./fibonacci"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/lab_0/code/LLVM IR/fibonacci"
+            },
+            "problemMatcher": [],
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "run-qemu-full",
+            "type": "shell",
+            "command": "qemu-riscv64",
+            "args": [
+                "./full"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/lab_0/code/LLVM IR/full"
+            },
+            "problemMatcher": [],
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "run-qemu-matrix",
+            "type": "shell",
+            "command": "qemu-riscv64",
+            "args": [
+                "./matrix"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/lab_0/code/LLVM IR/matrix"
+            },
+            "problemMatcher": [],
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "build-and-run-fibonacci",
+            "dependsOn": ["build-llvm-fibonacci", "build-gcc-fibonacci", "run-qemu-fibonacci"],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "build-and-run-full",
+            "dependsOn": ["build-llvm-full", "build-gcc-full", "run-qemu-full"],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "build-and-run-matrix",
+            "dependsOn": ["build-llvm-matrix", "build-gcc-matrix", "run-qemu-matrix"],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ]
+}

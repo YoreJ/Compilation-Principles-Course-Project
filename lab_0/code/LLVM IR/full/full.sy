@@ -1,0 +1,64 @@
+// 全局变量定义
+int global_var = 10;
+int MAX_SIZE = 10;  // 修正const关键字
+
+
+// 打印数组内容
+void print_array(int arr[], int size) {
+    int i = 0;
+    while (i < size) {
+        putint(arr[i]);
+        putch(32); // 输出空格
+        i = i + 1;
+    }
+    putch(10); // 输出换行符
+}
+
+// 反转数组
+void reverse_array(int arr[], int size) {
+    int i = 0;
+    int temp;
+    while (i < size / 2) {
+        temp = arr[i];
+        arr[i] = arr[size - 1 - i];
+        arr[size - 1 - i] = temp;
+        i = i + 1;
+    }
+}
+
+int main() {
+    int n, fact, fib;
+    int arr[10]; // 数组大小必须为常量表达式
+    
+    // 输入一个整数 n
+    n = getint();
+    
+    // 条件判断，输出全局变量
+    if (n < global_var) {
+        putint(global_var);
+        putch(10); // 换行符
+    } else {
+        global_var = 20; // 修改全局变量
+        putint(global_var);
+        putch(10); // 换行符
+    }
+    
+
+    // 使用循环填充数组
+    int i = 0;
+    while (i < MAX_SIZE) {
+        arr[i] = i + 1;
+        i = i + 1;
+    }
+
+    // 输出数组
+    print_array(arr, MAX_SIZE);
+    
+    // 反转数组
+    reverse_array(arr, MAX_SIZE);
+
+    // 输出反转后的数组
+    print_array(arr, MAX_SIZE);
+    
+    return 0;
+}

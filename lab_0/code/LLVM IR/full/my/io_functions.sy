@@ -1,0 +1,12 @@
+int main() {
+    int x;
+    
+    putint(12345);  // 输出 12345
+    putch(10);  // 输出换行符
+    
+    x = getint();  // 获取用户输入的整数
+    putint(x);  // 输出用户输入的整数
+    putch(10);  // 输出换行符
+    
+    return 0;
+}

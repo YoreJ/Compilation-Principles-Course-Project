@@ -1,0 +1,21 @@
+int main() {
+    int a, b, sum, diff, prod, quot, rem;
+    
+    a = getint();  // 输入第一个数
+    b = getint();  // 输入第二个数
+    
+    sum = a + b;  // 加法
+    diff = a - b;  // 减法
+    prod = a * b;  // 乘法
+    quot = a / b;  // 除法
+    rem = a % b;  // 取余
+    
+    putint(sum); putch(32);  // 输出加法结果
+    putint(diff); putch(32);  // 输出减法结果
+    putint(prod); putch(32);  // 输出乘法结果
+    putint(quot); putch(32);  // 输出除法结果
+    putint(rem);  // 输出取余结果
+    putch(10);  // 换行符
+    
+    return 0;
+}

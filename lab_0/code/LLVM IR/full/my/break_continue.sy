@@ -1,0 +1,32 @@
+int main() {
+    int i;
+
+    // 第一个 while 循环，打印 0 到 2
+    i = 0;
+    while (i < 5) {
+        if (i == 3) {
+            break;  // 当 i 等于 3 时跳出循环
+        }
+        putint(i);    // 输出整数
+        putch(32);    // 输出空格符
+        i = i + 1;
+    }
+
+    putch(10);  // 输出换行符
+
+    // 第二个 while 循环，跳过 i == 2 的情况，打印 0 到 4（不含2）
+    i = 0;
+    while (i < 5) {
+        if (i == 2) {
+            i = i + 1;
+            continue;  // 当 i 等于 2 时跳过本次循环
+        }
+        putint(i);    // 输出整数
+        putch(32);    // 输出空格符
+        i = i + 1;
+    }
+
+    putch(10);  // 输出换行符
+    return 0;
+}
+

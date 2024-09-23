@@ -1,0 +1,428 @@
+
+;; Function main (main, funcdef_no=23, decl_uid=3375, cgraph_uid=24, symbol_order=23) (executed once)
+
+Points-to analysis
+
+Constraints:
+
+ANYTHING = &ANYTHING
+ESCAPED = *ESCAPED
+ESCAPED = ESCAPED + UNKNOWN
+*ESCAPED = NONLOCAL
+NONLOCAL = &NONLOCAL
+NONLOCAL = &ESCAPED
+INTEGER = &ANYTHING
+callescape(9) = NONLOCAL
+CALLUSED(10) = callescape(9)
+callarg(12) = &STRING
+callarg(12) = callarg(12) + UNKNOWN
+callarg(12) = *callarg(12) + UNKNOWN
+CALLUSED(10) = callarg(12)
+*callarg(12) = callescape(9)
+CALLCLOBBERED(11) = callarg(12)
+callescape(9) = callarg(12)
+ESCAPED = &STRING
+callarg(13) = &num
+callarg(13) = callarg(13) + UNKNOWN
+callarg(13) = *callarg(13) + UNKNOWN
+CALLUSED(10) = callarg(13)
+*callarg(13) = callescape(9)
+CALLCLOBBERED(11) = callarg(13)
+callescape(9) = callarg(13)
+ESCAPED = &num
+num.0_13 = num
+factorial_14 = factorial_9
+factorial_14 = &NONLOCAL
+i_16 = i_10
+i_16 = &NONLOCAL
+_1 = i_16
+factorial_9 = _1 + UNKNOWN
+factorial_9 = factorial_14 + UNKNOWN
+i_10 = i_16 + UNKNOWN
+i_10 = &NONLOCAL
+factorial_15 = factorial_9
+factorial_15 = &NONLOCAL
+callescape(23) = NONLOCAL
+CALLUSED(24) = callescape(23)
+callarg(26) = &NONLOCAL
+callarg(26) = callarg(26) + UNKNOWN
+callarg(26) = *callarg(26) + UNKNOWN
+CALLUSED(24) = callarg(26)
+*callarg(26) = callescape(23)
+CALLCLOBBERED(25) = callarg(26)
+callescape(23) = callarg(26)
+ESCAPED = &NONLOCAL
+callarg(27) = &STRING
+callarg(27) = callarg(27) + UNKNOWN
+callarg(27) = *callarg(27) + UNKNOWN
+CALLUSED(24) = callarg(27)
+*callarg(27) = callescape(23)
+CALLCLOBBERED(25) = callarg(27)
+callescape(23) = callarg(27)
+ESCAPED = &STRING
+callarg(28) = factorial_15
+callarg(28) = callarg(28) + UNKNOWN
+callarg(28) = *callarg(28) + UNKNOWN
+CALLUSED(24) = callarg(28)
+*callarg(28) = callescape(23)
+CALLCLOBBERED(25) = callarg(28)
+callescape(23) = callarg(28)
+ESCAPED = factorial_15
+
+Collapsing static cycles and doing variable substitution
+Building predecessor graph
+Detecting pointer and location equivalences
+
+
+// The constraint graph before var-substitution in dot format:
+strict digraph {
+  node [
+    shape = box
+  ]
+  edge [
+    fontsize = "12"
+  ]
+
+  // List of nodes and complex constraints in the constraint graph:
+"NULL";
+"ANYTHING"[label="ANYTHING = { 2 }"];
+"STRING";
+"ESCAPED"[label="ESCAPED = { 3 5 8 }"];
+"NONLOCAL"[label="NONLOCAL = { 4 5 }"];
+"STOREDANYTHING";
+"INTEGER"[label="INTEGER = { 2 }"];
+"num";
+"*__isoc99_scanf";
+"callescape(9)";
+"CALLUSED(10)";
+"CALLCLOBBERED(11)";
+"callarg(12)"[label="callarg(12) = { 3 }"];
+"callarg(13)"[label="callarg(13) = { 8 }"];
+"num.0_13";
+"factorial_14"[label="factorial_14 = { 5 }"];
+"factorial_9";
+"i_16"[label="i_16 = { 5 }"];
+"i_10"[label="i_10 = { 5 }"];
+"_1";
+"factorial_15"[label="factorial_15 = { 5 }"];
+"__printf_chk";
+"callescape(23)";
+"CALLUSED(24)";
+"CALLCLOBBERED(25)";
+"callarg(26)"[label="callarg(26) = { 5 }"];
+"callarg(27)"[label="callarg(27) = { 3 }"];
+"callarg(28)";
+"main";
+"*NULL";
+"*ANYTHING";
+"*STRING";
+"*ESCAPED";
+"*NONLOCAL";
+"*STOREDANYTHING";
+"*INTEGER";
+"*num";
+"**__isoc99_scanf";
+"*callescape(9)";
+"*CALLUSED(10)";
+"*CALLCLOBBERED(11)";
+"*callarg(12)";
+"*callarg(13)";
+"*num.0_13";
+"*factorial_14";
+"*factorial_9";
+"*i_16";
+"*i_10";
+"*_1";
+"*factorial_15";
+"*__printf_chk";
+"*callescape(23)";
+"*CALLUSED(24)";
+"*CALLCLOBBERED(25)";
+"*callarg(26)";
+"*callarg(27)";
+"*callarg(28)";
+"*main";
+
+  // Edges in the constraint graph:
+"factorial_15" -> "ESCAPED";
+"*ESCAPED" -> "ESCAPED";
+"NONLOCAL" -> "callescape(9)";
+"callarg(12)" -> "callescape(9)";
+"callarg(13)" -> "callescape(9)";
+"callescape(9)" -> "CALLUSED(10)";
+"callarg(12)" -> "CALLUSED(10)";
+"callarg(13)" -> "CALLUSED(10)";
+"callarg(12)" -> "CALLCLOBBERED(11)";
+"callarg(13)" -> "CALLCLOBBERED(11)";
+"num" -> "num.0_13";
+"factorial_9" -> "factorial_14";
+"i_10" -> "i_16";
+"i_16" -> "_1";
+"factorial_9" -> "factorial_15";
+"NONLOCAL" -> "callescape(23)";
+"callarg(26)" -> "callescape(23)";
+"callarg(27)" -> "callescape(23)";
+"callarg(28)" -> "callescape(23)";
+"callescape(23)" -> "CALLUSED(24)";
+"callarg(26)" -> "CALLUSED(24)";
+"callarg(27)" -> "CALLUSED(24)";
+"callarg(28)" -> "CALLUSED(24)";
+"callarg(26)" -> "CALLCLOBBERED(25)";
+"callarg(27)" -> "CALLCLOBBERED(25)";
+"callarg(28)" -> "CALLCLOBBERED(25)";
+"factorial_15" -> "callarg(28)";
+"NONLOCAL" -> "*ESCAPED";
+"callescape(9)" -> "*callarg(12)";
+"callescape(9)" -> "*callarg(13)";
+"callescape(23)" -> "*callarg(26)";
+"callescape(23)" -> "*callarg(27)";
+"callescape(23)" -> "*callarg(28)";
+}
+
+
+Rewriting constraints and unifying variables
+Uniting pointer but not location equivalent variables
+Finding indirect cycles
+
+
+// The constraint graph before solve-graph in dot format:
+strict digraph {
+  node [
+    shape = box
+  ]
+  edge [
+    fontsize = "12"
+  ]
+
+  // List of nodes and complex constraints in the constraint graph:
+"NULL";
+"ANYTHING";
+"STRING";
+"ESCAPED" [label="\N\nESCAPED = ESCAPED + UNKNOWN\lESCAPED = *ESCAPED\l*ESCAPED = NONLOCAL\l"];
+"NONLOCAL";
+"STOREDANYTHING";
+"INTEGER";
+"*__isoc99_scanf";
+"callescape(9)";
+"CALLCLOBBERED(11)";
+"callarg(12)" [label="\N\ncallarg(12) = callarg(12) + UNKNOWN\lcallarg(12) = *callarg(12) + UNKNOWN\l*callarg(12) = callescape(9)\l"];
+"callarg(13)" [label="\N\ncallarg(13) = callarg(13) + UNKNOWN\lcallarg(13) = *callarg(13) + UNKNOWN\l*callarg(13) = callescape(9)\l"];
+"num.0_13";
+"factorial_14" [label="\N\nfactorial_9 = factorial_14 + UNKNOWN\l"];
+"factorial_9";
+"i_16" [label="\N\nfactorial_9 = i_16 + UNKNOWN\li_16 = i_16 + UNKNOWN\l"];
+"__printf_chk";
+"callescape(23)";
+"CALLCLOBBERED(25)";
+"callarg(26)" [label="\N\ncallarg(26) = callarg(26) + UNKNOWN\lcallarg(26) = *callarg(26) + UNKNOWN\l*callarg(26) = callescape(23)\l"];
+"callarg(27)" [label="\N\ncallarg(27) = callarg(27) + UNKNOWN\lcallarg(27) = *callarg(27) + UNKNOWN\l*callarg(27) = callescape(23)\l"];
+"callarg(28)" [label="\N\ncallarg(28) = callarg(28) + UNKNOWN\lcallarg(28) = *callarg(28) + UNKNOWN\l*callarg(28) = callescape(23)\l"];
+"main";
+
+  // Edges in the constraint graph:
+"NONLOCAL" -> "callescape(9)";
+"NONLOCAL" -> "callescape(23)";
+"STOREDANYTHING" -> "ESCAPED";
+"STOREDANYTHING" -> "num.0_13";
+"STOREDANYTHING" -> "callarg(12)";
+"STOREDANYTHING" -> "callarg(13)";
+"STOREDANYTHING" -> "factorial_9";
+"STOREDANYTHING" -> "i_16";
+"STOREDANYTHING" -> "callarg(26)";
+"STOREDANYTHING" -> "callarg(27)";
+"STOREDANYTHING" -> "callarg(28)";
+"callarg(12)" -> "callescape(9)";
+"callarg(12)" -> "CALLCLOBBERED(11)";
+"callarg(13)" -> "callescape(9)";
+"callarg(13)" -> "CALLCLOBBERED(11)";
+"factorial_14" -> "ESCAPED";
+"factorial_14" -> "callarg(28)";
+"factorial_9" -> "factorial_14";
+"callarg(26)" -> "callescape(23)";
+"callarg(26)" -> "CALLCLOBBERED(25)";
+"callarg(27)" -> "callescape(23)";
+"callarg(27)" -> "CALLCLOBBERED(25)";
+"callarg(28)" -> "callescape(23)";
+"callarg(28)" -> "CALLCLOBBERED(25)";
+}
+
+
+Solving graph
+
+
+// The constraint graph after solve-graph in dot format:
+strict digraph {
+  node [
+    shape = box
+  ]
+  edge [
+    fontsize = "12"
+  ]
+
+  // List of nodes and complex constraints in the constraint graph:
+"NULL";
+"ANYTHING";
+"STRING";
+"ESCAPED" [label="\N\nESCAPED = ESCAPED + UNKNOWN\lESCAPED = *ESCAPED\l*ESCAPED = NONLOCAL\l"];
+"NONLOCAL";
+"STOREDANYTHING";
+"INTEGER";
+"*__isoc99_scanf";
+"callescape(9)";
+"CALLCLOBBERED(11)";
+"callarg(12)" [label="\N\ncallarg(12) = callarg(12) + UNKNOWN\lcallarg(12) = *callarg(12) + UNKNOWN\l*callarg(12) = callescape(9)\l"];
+"callarg(13)" [label="\N\ncallarg(13) = callarg(13) + UNKNOWN\lcallarg(13) = *callarg(13) + UNKNOWN\l*callarg(13) = callescape(9)\l"];
+"num.0_13";
+"factorial_14" [label="\N\nfactorial_9 = factorial_14 + UNKNOWN\l"];
+"factorial_9";
+"i_16" [label="\N\nfactorial_9 = i_16 + UNKNOWN\li_16 = i_16 + UNKNOWN\l"];
+"__printf_chk";
+"callescape(23)";
+"CALLCLOBBERED(25)";
+"callarg(26)" [label="\N\ncallarg(26) = callarg(26) + UNKNOWN\lcallarg(26) = *callarg(26) + UNKNOWN\l*callarg(26) = callescape(23)\l"];
+"callarg(27)" [label="\N\ncallarg(27) = callarg(27) + UNKNOWN\lcallarg(27) = *callarg(27) + UNKNOWN\l*callarg(27) = callescape(23)\l"];
+"callarg(28)" [label="\N\ncallarg(28) = callarg(28) + UNKNOWN\lcallarg(28) = *callarg(28) + UNKNOWN\l*callarg(28) = callescape(23)\l"];
+"main";
+
+  // Edges in the constraint graph:
+"NONLOCAL" -> "ESCAPED";
+"NONLOCAL" -> "callescape(9)";
+"NONLOCAL" -> "num.0_13";
+"NONLOCAL" -> "callescape(23)";
+"STOREDANYTHING" -> "ESCAPED";
+"STOREDANYTHING" -> "num.0_13";
+"STOREDANYTHING" -> "callarg(12)";
+"STOREDANYTHING" -> "callarg(13)";
+"STOREDANYTHING" -> "factorial_9";
+"STOREDANYTHING" -> "i_16";
+"STOREDANYTHING" -> "callarg(26)";
+"STOREDANYTHING" -> "callarg(27)";
+"STOREDANYTHING" -> "callarg(28)";
+"callescape(9)" -> "ESCAPED";
+"callescape(9)" -> "num.0_13";
+"callarg(12)" -> "callescape(9)";
+"callarg(12)" -> "CALLCLOBBERED(11)";
+"callarg(13)" -> "callescape(9)";
+"callarg(13)" -> "CALLCLOBBERED(11)";
+"num.0_13" -> "ESCAPED";
+"num.0_13" -> "callarg(13)";
+"factorial_14" -> "ESCAPED";
+"factorial_14" -> "callarg(28)";
+"factorial_9" -> "factorial_14";
+"callescape(23)" -> "ESCAPED";
+"callarg(26)" -> "callescape(23)";
+"callarg(26)" -> "CALLCLOBBERED(25)";
+"callarg(27)" -> "callescape(23)";
+"callarg(27)" -> "CALLCLOBBERED(25)";
+"callarg(28)" -> "callescape(23)";
+"callarg(28)" -> "CALLCLOBBERED(25)";
+}
+
+
+
+Points-to sets
+
+ANYTHING = { ANYTHING }
+ESCAPED = { STRING ESCAPED NONLOCAL num }
+NONLOCAL = { ESCAPED NONLOCAL }
+STOREDANYTHING = { }
+INTEGER = { ANYTHING }
+num = { STRING ESCAPED NONLOCAL num } same as num.0_13
+*__isoc99_scanf = { }
+callescape(9) = { STRING ESCAPED NONLOCAL num }
+CALLUSED(10) = { STRING ESCAPED NONLOCAL num } same as callescape(9)
+CALLCLOBBERED(11) = { STRING ESCAPED NONLOCAL num }
+callarg(12) = { STRING }
+callarg(13) = { STRING ESCAPED NONLOCAL num }
+num.0_13 = { STRING ESCAPED NONLOCAL num }
+factorial_14 = { NONLOCAL }
+factorial_9 = { NONLOCAL }
+i_16 = { NONLOCAL }
+i_10 = { NONLOCAL } same as i_16
+_1 = { NONLOCAL } same as i_16
+factorial_15 = { NONLOCAL } same as factorial_14
+__printf_chk = { }
+callescape(23) = { STRING ESCAPED NONLOCAL }
+CALLUSED(24) = { STRING ESCAPED NONLOCAL } same as callescape(23)
+CALLCLOBBERED(25) = { STRING ESCAPED NONLOCAL }
+callarg(26) = { ESCAPED NONLOCAL }
+callarg(27) = { STRING }
+callarg(28) = { ESCAPED NONLOCAL }
+main = { }
+
+
+Alias information for main
+
+Aliased symbols
+
+num, UID D.3377, int, is addressable
+
+Call clobber information
+
+ESCAPED, points-to non-local, points-to vars: { D.3377 } (escaped)
+
+Flow-insensitive points-to information
+
+
+;; 2 loops found
+;;
+;; Loop 0
+;;  header 0, latch 1
+;;  depth 0, outer -1
+;;  nodes: 0 1 2 5 3 6 4
+;;
+;; Loop 1
+;;  header 3, latch 6
+;;  depth 1, outer 0
+;;  nodes: 3 6
+;; 2 succs { 5 4 }
+;; 5 succs { 3 }
+;; 3 succs { 6 4 }
+;; 6 succs { 3 }
+;; 4 succs { 1 }
+int main ()
+{
+  int i;
+  long long unsigned int factorial;
+  int num;
+  long long unsigned int _1;
+  int num.0_13;
+
+  <bb 2> [local count: 118111600]:
+  scanf ("%d", &num);
+  num.0_13 = num;
+  if (num.0_13 > 0)
+    goto <bb 5>; [89.00%]
+  else
+    goto <bb 7>; [11.00%]
+
+  <bb 5> [local count: 105119324]:
+
+  <bb 3> [local count: 955630225]:
+  # factorial_14 = PHI <factorial_9(6), 1(5)>
+  # i_16 = PHI <i_10(6), 1(5)>
+  _1 = (long long unsigned int) i_16;
+  factorial_9 = _1 * factorial_14;
+  i_10 = i_16 + 1;
+  if (i_10 <= num.0_13)
+    goto <bb 6>; [89.00%]
+  else
+    goto <bb 8>; [11.00%]
+
+  <bb 8> [local count: 105119324]:
+  goto <bb 4>; [100.00%]
+
+  <bb 6> [local count: 850510901]:
+  goto <bb 3>; [100.00%]
+
+  <bb 7> [local count: 12992276]:
+
+  <bb 4> [local count: 118111600]:
+  # factorial_15 = PHI <factorial_9(8), 1(7)>
+  __printf_chk (2, "%llu\n", factorial_15);
+  num ={v} {CLOBBER(eol)};
+  return 0;
+
+}
+
+

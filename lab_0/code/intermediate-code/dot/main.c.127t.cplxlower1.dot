@@ -1,0 +1,56 @@
+digraph "main.c.127t.cplxlower1" {
+overlap=false;
+subgraph "cluster_main" {
+	style="dashed";
+	color="black";
+	label="main ()";
+	subgraph cluster_23_1 {
+	style="filled";
+	color="darkgreen";
+	fillcolor="grey88";
+	label="loop 1";
+	labeljust=l;
+	penwidth=2;
+	fn_23_basic_block_3 [shape=record,style=filled,fillcolor=lightgrey,label="{COUNT:955630225\<bb\ 3\>:\l\
+|#\ factorial_14\ =\ PHI\ \<factorial_9(3),\ 1(2)\>\l\
+|#\ i_16\ =\ PHI\ \<i_10(3),\ 1(2)\>\l\
+|_1\ =\ (long\ long\ unsigned\ int)\ i_16;\l\
+|factorial_9\ =\ _1\ *\ factorial_14;\l\
+|i_10\ =\ i_16\ +\ 1;\l\
+|num.0_2\ =\ num;\l\
+|if\ (num.0_2\ \>=\ i_10)\l\
+\ \ goto\ \<bb\ 3\>;\ [89.00%]\l\
+else\l\
+\ \ goto\ \<bb\ 4\>;\ [11.00%]\l\
+}"];
+
+	}
+	fn_23_basic_block_0 [shape=Mdiamond,style=filled,fillcolor=white,label="ENTRY"];
+
+	fn_23_basic_block_1 [shape=Mdiamond,style=filled,fillcolor=white,label="EXIT"];
+
+	fn_23_basic_block_2 [shape=record,style=filled,fillcolor=lightgrey,label="{COUNT:118111600\<bb\ 2\>:\l\
+|scanf\ (\"%d\",\ &num);\l\
+|num.0_13\ =\ num;\l\
+|if\ (num.0_13\ \>\ 0)\l\
+\ \ goto\ \<bb\ 3\>;\ [89.00%]\l\
+else\l\
+\ \ goto\ \<bb\ 4\>;\ [11.00%]\l\
+}"];
+
+	fn_23_basic_block_4 [shape=record,style=filled,fillcolor=lightgrey,label="{COUNT:118111600\<bb\ 4\>:\l\
+|#\ factorial_15\ =\ PHI\ \<factorial_9(3),\ 1(2)\>\l\
+|__printf_chk\ (2,\ \"%llu\\n\",\ factorial_15);\l\
+|num\ =\{v\}\ \{CLOBBER(eol)\};\l\
+|return\ 0;\l\
+}"];
+
+	fn_23_basic_block_0:s -> fn_23_basic_block_2:n [style="solid,bold",color=black,weight=100,constraint=true,label="[100%]"];
+	fn_23_basic_block_2:s -> fn_23_basic_block_3:n [style="solid,bold",color=forestgreen,weight=10,constraint=true,label="[89%]"];
+	fn_23_basic_block_2:s -> fn_23_basic_block_4:n [style="solid,bold",color=darkorange,weight=10,constraint=true,label="[11%]"];
+	fn_23_basic_block_3:s -> fn_23_basic_block_3:n [style="dotted,bold",color=blue,weight=10,constraint=false,label="[89%]"];
+	fn_23_basic_block_3:s -> fn_23_basic_block_4:n [style="solid,bold",color=darkorange,weight=10,constraint=true,label="[11%]"];
+	fn_23_basic_block_4:s -> fn_23_basic_block_1:n [style="solid,bold",color=black,weight=10,constraint=true,label="[100%]"];
+	fn_23_basic_block_0:s -> fn_23_basic_block_1:n [style="invis",constraint=true];
+}
+}

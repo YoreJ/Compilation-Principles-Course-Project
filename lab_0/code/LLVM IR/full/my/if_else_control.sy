@@ -1,0 +1,13 @@
+int main() {
+    int x;
+    x = getint();  // 获取用户输入
+    
+    if (x > 10) {
+        putint(1);  // 如果 x 大于 10，输出 1
+    } else {
+        putint(0);  // 否则输出 0
+    }
+    
+    putch(10);  // 输出换行符
+    return 0;
+}
